@@ -1,4 +1,4 @@
-HOST = '127.0.0.1'
+HOST = '192.168.1.6'
 PORT = 65432
 
 SHARED_KEY = b'KunciKI1'
