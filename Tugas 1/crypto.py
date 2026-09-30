@@ -95,7 +95,6 @@ S_BOXES = [
 
 
 def bytes_to_bits(data: bytes) -> list:
-    """Mengubah bytes menjadi list bit (0/1), MSB-first."""
     bits = []
     for byte in data:
         for i in range(7, -1, -1):
@@ -104,7 +103,6 @@ def bytes_to_bits(data: bytes) -> list:
 
 
 def bits_to_bytes(bits: list) -> bytes:
-    """Mengubah list bit kembali menjadi bytes."""
     out = bytearray()
     for i in range(0, len(bits), 8):
         byte = 0
@@ -115,7 +113,6 @@ def bits_to_bytes(bits: list) -> bytes:
 
 
 def permute(bits: list, table: list) -> list:
-    """Permutasi/pemilihan bit sesuai tabel (1-indexed, seperti standar DES)."""
     return [bits[i - 1] for i in table]
 
 
@@ -142,7 +139,6 @@ def generate_round_keys(key: bytes) -> list:
 
 
 def sbox_substitution(bits48: list) -> list:
-    """Substitusi 48 bit -> 32 bit lewat 8 S-box."""
     output = []
     for i in range(8):
         chunk = bits48[i * 6:(i + 1) * 6]
@@ -170,7 +166,6 @@ def des_encrypt_block(block_bits: list, round_keys: list) -> list:
 
 
 def des_decrypt_block(block_bits: list, round_keys: list) -> list:
-    """Sama persis dengan enkripsi, HANYA urutan round key dibalik."""
     block = permute(block_bits, IP)
     L, R = block[:32], block[32:]
     for i in range(16):
